@@ -88,6 +88,28 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
+    /* Botões dos links */
+    .link-button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 5px 5px 5px 0;
+      transition: background-color 0.3s;
+      display: inline-block;
+      text-align: center;
+      user-select: none;
+    }
+    .link-button:hover,
+    .link-button:focus {
+      background-color: #005fa3;
+      outline: none;
+    }
+
     /* Estilo para o modo escuro */
     body.dark-mode {
       background-color: #121212;
@@ -120,6 +142,14 @@
     body.dark-mode button#toggle-darkmode:hover {
       background-color: #a0d1ff;
     }
+    body.dark-mode .link-button {
+      background-color: #80c1ff;
+      color: #121212;
+    }
+    body.dark-mode .link-button:hover,
+    body.dark-mode .link-button:focus {
+      background-color: #a0d1ff;
+    }
   </style>
 </head>
 <body class="dark-mode">
@@ -138,24 +168,24 @@
   <main>
     <section id="credito">
       <h2>Crédito pessoal</h2>
-      <p><a href="https://geocredibnkvitoria.com/" target="_blank" rel="noopener noreferrer">CONFERIR</a></p>
+      <button class="link-button" data-url="https://geocredibnkvitoria.com/">CONFERIR</button>
     </section>
 
     <section id="hospedagem">
       <h2>HOSPEDAGEM e VPS</h2>
-      <p><a href="https://hostinger.com.br/?REFERRALCODE=1VICTOR444" target="_blank" rel="noopener noreferrer">CONFERIR HOSTINGER</a></p>
-      <p><a href="https://jogosantigos472302513.wordpress.com/maquinas-vps-temos-todas-as-opcoes-de-maqinas-para-voce/">VPS PROFISSIONAL</a></p>
-      <p><a href="https://wa.me/5527999860405?text=Olá%2C%20tenho%20interesse%20em%20soluções%20de%20VPS%20e%20ERP.%20Pode%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer">MAIS OPÇÃO DE VPS, HOSPEDAGEM E ERP</a></p>
+      <button class="link-button" data-url="https://hostinger.com.br/?REFERRALCODE=1VICTOR444">CONFERIR HOSTINGER</button>
+      <button class="link-button" data-url="https://jogosantigos472302513.wordpress.com/maquinas-vps-temos-todas-as-opcoes-de-maqinas-para-voce/">VPS PROFISSIONAL</button>
+      <button class="link-button" data-url="https://wa.me/5527999860405?text=Olá%2C%20tenho%20interesse%20em%20soluções%20de%20VPS%20e%20ERP.%20Pode%20me%20ajudar%3F">MAIS OPÇÃO DE VPS, HOSPEDAGEM E ERP</button>
     </section>
 
     <section id="seg">
       <h2>SEGUROS E CONSÓRCIOS</h2>
-      <p><a href="https://wa.me/5527999497001?text=ola%20quero%20saber%20sobre%20seguro%20e%20consorcio" target="_blank" rel="noopener noreferrer">CONFERIR</a></p>
+      <button class="link-button" data-url="https://wa.me/5527999497001?text=ola%20quero%20saber%20sobre%20seguro%20e%20consorcio">CONFERIR</button>
     </section>
 
     <section id="cabelo">
       <h2>Cabelo & Calvície</h2>
-      <p><a href="https://www.larissasaib.com.br/" target="_blank" rel="noopener noreferrer">Tricologia, Transplante Capilar e Medicina Estética</a></p>
+      <button class="link-button" data-url="https://www.larissasaib.com.br/">Tricologia, Transplante Capilar e Medicina Estética</button>
     </section>
 
     <div id="unique-string">
@@ -178,6 +208,14 @@
     document.addEventListener('DOMContentLoaded', () => {
       const uniqueDiv = document.getElementById('unique-string');
       uniqueDiv.textContent = 'Identificador único:\n' + gerarStringUnica();
+
+      // Adiciona evento para todos os botões de link
+      document.querySelectorAll('.link-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const url = btn.getAttribute('data-url');
+          window.open(url, '_blank', 'noopener,noreferrer');
+        });
+      });
     });
 
     // Botão para alternar dark mode
